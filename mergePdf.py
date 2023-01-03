@@ -31,6 +31,6 @@ def merge_pdfs(path, save_path):
     merger.close()
 
 # Your Chosen Folders:
-path = "C:\\Users\\Jerwell\\Desktop\\MergePDF" # Source Folder
-save_path = "C:\\Users\\Jerwell\\Desktop\\MergePDF" # Save Path
+path = " " # Source Folder
+save_path = " " # Save Path
 merge_pdfs(path, save_path)
