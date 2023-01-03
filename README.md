@@ -1,0 +1,3 @@
+# Personal Python Scripts
+
+List of my personal python automations, scripts and others...
