@@ -1,0 +1,27 @@
+# Merge PDF Files from your chosen Directory using python script.
+# Requirement Modules: PyPDF2, OS(just a built-in Function buddy, no need to install it :) 
+
+import os
+import PyPDF2
+
+def merge_pdfs(path, save_path):
+    pdf_files = []
+    # r=root, d=directories, f=files
+    for r, d, f in os.walk(path):
+        for file in f:
+            if '.pdf' in file:
+                pdf_files.append(os.path.join(r, file))
+
+    merger = PyPDF2.PdfFileMerger()
+
+    for pdf in pdf_files:
+        merger.append(pdf)
+
+    # Specify the save path for the merged PDF file
+    merger.write(os.path.join(save_path, 'merged_pdf.pdf'))
+    merger.close()
+
+# Your Chosen Folders:
+path = " " # Source Folder
+save_path = " " # Save Path
+merge_pdfs(path, save_path)
