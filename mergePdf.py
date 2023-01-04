@@ -11,11 +11,10 @@ class PDFMerger:
         self.pdf_files = []
 
     def get_pdf_files(self):
-        # r=root, d=directories, f=files
-        for r, d, f in os.walk(self.path):
-            for file in f:
-                if '.pdf' in file:
-                    self.pdf_files.append(os.path.join(r, file))
+        with os.scandir(self.path) as entries:
+            for entry in entries:
+                if entry.name.endswith('.pdf') and entry.is_file():
+                    self.pdf_files.append(entry.path)
     
     def merge_pdfs(self):                
         # Show files that will be merging
