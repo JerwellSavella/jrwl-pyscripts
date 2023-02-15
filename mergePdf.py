@@ -13,27 +13,27 @@ class PDFMerger:
     def merge_pdfs(self):
         # Find PDF files in the directory
         pdf_files = glob.glob(os.path.join(self.path, '*.pdf'))
-    
-    def merge_pdfs(self):                
+                 
         # Show files that will be merging
         print("The following PDF files will be merged:")
-        for pdf in self.pdf_files:
-            #Extract the filename from the path
-            file_name = os.path.basename(pdf)
-            print(file_name)
+        for pdf in pdf_files:
+            print(os.path.basename(pdf))
 
         # Ask for confirmation before merging the files
         response = input("Do you want to merge these files (y/n)?: ")
         if response.lower() != 'y':
             return
-        merger = PyPDF2.PdfFileMerger()
 
-        for pdf in self.pdf_files:
+        # Merge the PDF files
+        merger = PyPDF2.PdfMerger()
+        for pdf in pdf_files:
             merger.append(pdf)
-
-        # Specify the save path for the merged PDF file
-        merger.write(os.path.join(self.save_path, 'merged_pdf.pdf'))
-        merger.close()
+        try:
+            #specify the save path for the merged PDF file
+            merger.write(os.path.join(self.save_path, 'merged_pdf.pdf'))
+            print("PDF files have been merge successfull!")
+        except:
+            print("Error: Could not merge the PDF files.")
 
 # Your Chosen Folders:
 path = " " # Source Folder
