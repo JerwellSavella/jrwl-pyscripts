@@ -3,18 +3,16 @@
 
 import os
 import PyPDF2
+import glob
 
 class PDFMerger:
     def __init__(self, path, save_path):
         self.path = path
         self.save_path = save_path
-        self.pdf_files = []
 
-    def get_pdf_files(self):
-        with os.scandir(self.path) as entries:
-            for entry in entries:
-                if entry.name.endswith('.pdf') and entry.is_file():
-                    self.pdf_files.append(entry.path)
+    def merge_pdfs(self):
+        # Find PDF files in the directory
+        pdf_files = glob.glob(os.path.join(self.path, '*.pdf'))
     
     def merge_pdfs(self):                
         # Show files that will be merging
@@ -40,6 +38,6 @@ class PDFMerger:
 # Your Chosen Folders:
 path = " " # Source Folder
 save_path = " " # Save Path
+
 pdf_merger = PDFMerger(path, save_path)
-pdf_merger.get_pdf_files()
 pdf_merger.merge_pdfs()
